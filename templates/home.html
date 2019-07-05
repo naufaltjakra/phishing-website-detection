@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="./static/main.css">
+    <title>WPD</title>
+</head>
+
+<body>
+    <h2>Detection Page</h2>
+    <form action="/result" method="GET">
+        <p>Does The URL have IP Address?</p>
+        <input type="radio" name="ipPhishing" value="1">Yes<br>
+        <input type="radio" name="ipLegit" value="-1" checked>No<br>
+
+        <p>URL Length</p>
+        <input type="radio" name="ulLegit" value="1" checked>1<br>
+        <input type="radio" name="ulSuspicious" value="0">0<br>
+        <input type="radio" name="ulPhishing" value="-1">-1<br>
+
+        <p>Having @ symbol on URL</p>
+        <input type="radio" name="atPhishing" value="-1">Yes<br>
+        <input type="radio" name="atLegit" value="1" checked>No<br>
+
+        <p>Does The URL have preffix suffix?</p>
+        <input type="radio" name="psPhishing" value="-1">Yes<br>
+        <input type="radio" name="psLegit" value="1" checked>No<br>
+
+        <p>Does The URL have sub domain?</p>
+        <input type="radio" name="sdLegit" value="1">1<br>
+        <input type="radio" name="sdSuspicious" value="0">0<br>
+        <input type="radio" name="sdPhishing" value="-1" checked>-1<br>
+
+        <p>Does The URL have Https token?</p>
+        <input type="radio" name="htPhishing" value="-1">Yes<br>
+        <input type="radio" name="htLegit" value="1" checked>No<br>
+
+        <p>Request URL?</p>
+        <input type="radio" name="ruPhishing" value="-1">1<br>
+        <input type="radio" name="ruLegit" value="1" checked>-1<br>
+
+        <p>URL anchor</p>
+        <input type="radio" name="uaLegit" value="1">1<br>
+        <input type="radio" name="uaSuspicious" value="0">0<br>
+        <input type="radio" name="uaPhishing" value="-1" checked>-1<br>
+
+        <p>SFH</p>
+        <input type="radio" name="sfhLegit" value="1">1<br>
+        <input type="radio" name="sfhSuspicious" value="0">0<br>
+        <input type="radio" name="sfhPhishing" value="-1" checked>-1<br>
+
+        <p>Abnormal URL?</p>
+        <input type="radio" name="abPhishing" value="-1">Yes<br>
+        <input type="radio" name="abLegit" value="1" checked>No<br>
+
+        <p>Redirect?</p>
+        <input type="radio" name="reSuspicious" value="0">0<br>
+        <input type="radio" name="reLegit" value="1" checked>1<br>
+
+        <p>On mouseover</p>
+        <input type="radio" name="moPhishing" value="-1">-1<br>
+        <input type="radio" name="moLegit" value="1" checked>1<br>
+
+        <p>Pop Up Window</p>
+        <input type="radio" name="poPhishing" value="-1">-1<br>
+        <input type="radio" name="poLegit" value="1" checked>1<br>
+
+        <p>Age of Domain</p>
+        <input type="radio" name="adPhishing" value="-1">-1<br>
+        <input type="radio" name="adLegit" value="1" checked>1<br>
+
+        <p>DNS record</p>
+        <input type="radio" name="dnsPhishing" value="-1">-1<br>
+        <input type="radio" name="dnsLegit" value="1" checked>1<br>
+
+        <p>Web traffic</p>
+        <input type="radio" name="wtPhishing" value="-1">-1<br>
+        <input type="radio" name="wtSuspicious" value="0">0<br>
+        <input type="radio" name="wtLegit" value="1" checked>1<br>
+
+        <input type="submit" value="Detect">
+    </form>
+</body>
+
+</html>
