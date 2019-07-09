@@ -3,6 +3,7 @@ import pandas as pd
 import time
 import random
 from pprint import pprint
+import pickle
 
 # Check data
 def check_purity(data):
@@ -299,6 +300,10 @@ start_time = time.time()
 forest = random_forest_algorithm(train_df, n_trees=10, n_bootstrap=len(train_df), n_features=4, dt_max_depth=5)
 predictions = random_forest_predictions(test_df, forest)
 accuracy = calculate_accuracy(predictions, test_df.label)
+
+# pickle
+# with open('forest.pkl', 'wb') as f:
+#     pickle.dump(forest, f)
 
 # print(forest)
 print("Accuracy : %.2f%%" % (accuracy * 100))
