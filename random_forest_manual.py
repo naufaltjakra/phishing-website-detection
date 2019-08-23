@@ -141,11 +141,11 @@ def decision_tree_algorithm(df, counter=0, min_samples=2, max_depth=5, random_su
         type_of_feature = FEATURE_TYPES[split_column]
         # feature is continuous
         if type_of_feature == "continuous":
-            question = "{} <= {}".format(feature_name, split_value)
+            question = f"{feature_name} <= {split_value}"
             
         # feature is categorical
         else:
-            question = "{} = {}".format(feature_name, split_value)
+            question = f"{feature_name} = {split_value}"
         
         # instantiate sub-tree
         sub_tree = {question: []}
@@ -166,7 +166,7 @@ def decision_tree_algorithm(df, counter=0, min_samples=2, max_depth=5, random_su
 # Predictions
 def predict_example(example, tree):
     question = list(tree.keys())[0]
-    feature_name, comparison_operator, value = question.split(" ")
+    feature_name, comparison_operator, value = question.split()
 
     # ask question
     if comparison_operator == "<=":
@@ -196,9 +196,10 @@ def decision_tree_predictions(test_df, tree):
     return predictions
 
 
-# Train-Test
+# Train-Test Dataframe
 def train_test(df, test_size):
     
+    # check if the test_size is float
     if isinstance(test_size, float):
         test_size = round(test_size * len(df))
 
@@ -275,7 +276,7 @@ def random_forest_algorithm(train_df, n_trees, n_bootstrap, n_features, dt_max_d
 def random_forest_predictions(test_df, forest):
     df_predictions = {}
     for i in range(len(forest)):
-        column_name = "tree_{}".format(i)
+        column_name = f"tree_{i}"
         predictions = decision_tree_predictions(test_df, tree=forest[i])
         df_predictions[column_name] = predictions
 
@@ -287,22 +288,12 @@ def random_forest_predictions(test_df, forest):
 # Timer start
 start_time = time.time()
 
-# # Testing Things out
-# example = test_df.iloc[50]
-# print(example)
-# print(" ")
-# tree = decision_tree_algorithm(train_df, max_depth=5)
-# pprint(tree)
-# print(" ")
-# printthis = predict_example(example, tree)
-# print(f"Result : {printthis}")
-
-forest = random_forest_algorithm(train_df, n_trees=10, n_bootstrap=len(train_df), n_features=4, dt_max_depth=5)
+forest = random_forest_algorithm(train_df, n_trees=20, n_bootstrap=len(train_df), n_features=4, dt_max_depth=5)
 predictions = random_forest_predictions(test_df, forest)
 accuracy = calculate_accuracy(predictions, test_df.label)
 
 # pickle
-# with open('forest.pkl', 'wb') as f:
+# with open('model.pkl', 'wb') as f:
 #     pickle.dump(forest, f)
 
 # print(forest)

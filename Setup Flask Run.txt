@@ -1,5 +1,5 @@
 On Powershell :
-$env:FLASK_APP = "flaskweb.py"
+$env:FLASK_APP = "app.py"
 
 Debug mode :
 $env:FLASK_DEBUG = 1

@@ -11,7 +11,7 @@
 
 <body>
     <h2>Detection Page</h2>
-    <form action="/result" method="GET">
+    <form action="{{ url_for('result') }}" method="POST">
         <p>Does The URL have IP Address?</p>
         <input type="radio" name="ip" value="1">Yes<br>
         <input type="radio" name="ip" value="-1" checked>No<br>
