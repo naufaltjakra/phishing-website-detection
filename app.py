@@ -7,7 +7,6 @@ from sklearn.externals import joblib
 
 app = Flask(__name__)
 
-
 @app.route("/")
 @app.route("/home")
 def home():

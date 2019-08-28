@@ -288,7 +288,7 @@ def random_forest_predictions(test_df, forest):
 # Timer start
 start_time = time.time()
 
-forest = random_forest_algorithm(train_df, n_trees=20, n_bootstrap=len(train_df), n_features=4, dt_max_depth=5)
+forest = random_forest_algorithm(train_df, n_trees=10, n_bootstrap=len(train_df), n_features=4, dt_max_depth=8)
 predictions = random_forest_predictions(test_df, forest)
 accuracy = calculate_accuracy(predictions, test_df.label)
 
