@@ -24,8 +24,7 @@ PC/user/kamu> pip install -r requirements.txt
 
 **2. Generate new Pickle Model (optional)**
 
-Open random_forest_manual.py file
-Uncomment the pickle code on line 296 & 297
+Open random_forest_manual.py file and Uncomment the pickle code on line 296 & 297
 
 Navigate to the folder on console
 
