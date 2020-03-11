@@ -9,20 +9,31 @@ import pickle
 def check_purity(data):
     
     label_column = data[:, -1]
+    # returns array([-1, 0, 1, ... all of the label values])
+    
     unique_classes = np.unique(label_column)
+    # returns array([-1, 0, 1], dtype=object)
 
     if len(unique_classes) == 1:
+        # if the label class is just 1
         return True
     else:
+        # if the label class is more than 1
         return False
 
 def classify_data(data):
     
+    # access the label column
     label_column = data[:, -1]
     unique_classes, counts_unique_classes = np.unique(label_column, return_counts=True)
+    # example
+    # returns array([-1, 0, 1], dtype=object)
+    #         array([121, 222, 333], dtype=int64) <== example of counts return value
 
     index = counts_unique_classes.argmax()
+    # with the example above, the index variable value is 2, because of the argmax()
     classification = unique_classes[index]
+    # from the exampple above the classification is the class label that appear most often, which is 1 (legitimate)
     
     return classification
 
@@ -37,24 +48,29 @@ def get_potential_splits(data, random_subspace):
     if random_subspace and random_subspace <= len(column_indices):
         column_indices = random.sample(population=column_indices, k=random_subspace)
     
-    for column_index in column_indices:          
+    for column_index in column_indices:
+        # get all the row values and the corresponding column index
         values = data[:, column_index]
+        # sort all the unique values 
         unique_values = np.unique(values)
         
         potential_splits[column_index] = unique_values
     
     return potential_splits
+    # one example of the returned potential_split
+    # {13: array[-1, 1], dtype=int64}
 
 
 # Calculate Entropy
 def calculate_entropy(data):
     
+    # access the label column
     label_column = data[:, -1]
     _, counts = np.unique(label_column, return_counts=True)
 
     probabilities = counts / counts.sum()
     entropy = sum(probabilities * -np.log2(probabilities))
-     
+    
     return entropy
 
 def calculate_overall_entropy(data_below, data_above):
@@ -156,6 +172,9 @@ def decision_tree_algorithm(df, counter=0, min_samples=2, max_depth=5, random_su
         
         if yes_answer == no_answer:
             sub_tree = yes_answer
+            print(yes_answer)
+            print("-----")
+            print(no_answer)
         else:
             sub_tree[question].append(yes_answer)
             sub_tree[question].append(no_answer)
@@ -267,7 +286,7 @@ def random_forest_algorithm(train_df, n_trees, n_bootstrap, n_features, dt_max_d
         tree = decision_tree_algorithm(df_bootstrapped, max_depth=dt_max_depth, random_subspace=n_features)
         pprint(tree)
         print(" ")
-        print("########")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         print(" ")
         forest.append(tree)
     
@@ -288,7 +307,7 @@ def random_forest_predictions(test_df, forest):
 # Timer start
 start_time = time.time()
 
-forest = random_forest_algorithm(train_df, n_trees=10, n_bootstrap=len(train_df), n_features=4, dt_max_depth=8)
+forest = random_forest_algorithm(train_df, n_trees=3, n_bootstrap=len(train_df), n_features=4, dt_max_depth=8)
 predictions = random_forest_predictions(test_df, forest)
 accuracy = calculate_accuracy(predictions, test_df.label)
 
@@ -297,7 +316,7 @@ accuracy = calculate_accuracy(predictions, test_df.label)
 #     pickle.dump(forest, f)
 
 # print(forest)
-print("Accuracy : %.2f%%" % (accuracy * 100))
+# print("Accuracy : %.2f%%" % (accuracy * 100))
 
 # Display render time
 elapsed_time = time.time() - start_time
