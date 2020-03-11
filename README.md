@@ -60,6 +60,4 @@ PC/user/loc> flask run
 - On url => localhost:5000 (usually)
 
 # Random Forest Algorithm Overview
-![alt text](https://github.com/naufaltjakra/phishing-website-detection/Random-Forest.jpg)
-
-# Edit
+![Random Forest Image](https://github.com/naufaltjakra/phishing-website-detection/blob/master/Random-Forest.jpg)
